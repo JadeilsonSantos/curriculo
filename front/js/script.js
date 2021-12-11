@@ -24,8 +24,6 @@ function usuario(){
     const $experiencia = document.querySelector("#experiencia").value
     const $dataNascimento = document.querySelector("#dataDeNascimento").value
     const ano = new Date($dataNascimento).getFullYear()
-
-
     
     let usuario = {
         nome: $nome,
@@ -74,8 +72,7 @@ function cadastrar(e){
     e.preventDefault();
     usuario()
     localStorage.usuarios = JSON.stringify(usuarios)    
-    document.querySelector("#nome").value = ""
-    document.querySelector("#dataDeNascimento").value = ""
+    
 }
 
 
@@ -122,7 +119,7 @@ function listausuarios(e){
              ` 
         }); 
     }else {
-        $tbody.innerHTML = "<td>Nenhum Aluno Cadastrado</td>"
+        $tbody.innerHTML = "<td>Nenhum Curriculo Cadastrado</td>"
     }
     
 }
@@ -138,7 +135,7 @@ function meuCurriculo(){
         console.log(usuarios);
         usuarios.forEach(usuario => {
             $main.innerHTML += `            
-            <div class="grid">
+            <div class="grid mb-5">
                 <div class="sidebarL">
                     <div class="img">
                         <img src="${usuario.foto}"
@@ -254,9 +251,9 @@ function deletar(e){
     console.log(del);
     //localStorage.removeItem(del)
 }
-
+ 
 $botao1.addEventListener('click', cadastrar)
-$botao2.addEventListener('click', meuCurriculo) 
-$botao3.addEventListener('click', pesquisar) 
+/* $botao2.addEventListener('click', meuCurriculo)  */
+$botao3.addEventListener('click', pesquisar)  
 //$btnCurriculo.addEventListener('click', meuCurriculo) 
 

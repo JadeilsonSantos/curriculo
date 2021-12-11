@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    
+   
     
 }
 .grid{
@@ -97,6 +97,28 @@ footer{
     
 
 } 
+.cLogin{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin-top: 20%;
+
+    background-color: rgb(255, 231, 97);
+    height: 300px;
+    width: 35%;
+    padding: 10px;
+
+}
+
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+}   
+   
 
 /* media */
 
