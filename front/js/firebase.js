@@ -1,175 +1,200 @@
+
+// Botoes
+const $btnTecnologia = document.getElementById("btnTecnologia")
+const $btnIdioma = document.getElementById("btnIdioma")
+const $btnFormacao = document.getElementById("btnFormacao")
+const $btnCuros = document.getElementById("btnCurso")
+const $btnExperiencia = document.getElementById("btnExperiencia")
+
+const $btnCurriculo = document.getElementById("btnCurriculo")
+
 // cadastro dos dados do curriculo
 
 // Dados Pessoais
-function dadosPessoais(nome, idade, cargo, foto){
-    /* let arrUser = [] */
-    return usuario = {
-        nome: nome,
-        idade: idade,
-        cargo: cargo,
-        foto: foto
-    }
-   
+
+function dadosPessoais(e){
+    e.preventDefault()
+
+    const $nome = document.getElementById("nome").value
+    const $dataNascimento = document.getElementById("dataDeNascimento").value
+    const ano = new Date($dataNascimento).getFullYear()
+    const $cargo = document.getElementById("cargo").value
+    const $foto = document.getElementById("foto").value
+
+    const usuario = {
+        nome: $nome,
+        idade: Math.abs(ano - new Date().getFullYear()),
+        cargo: $cargo,
+        foto: $foto
+    }    
+    
+    return usuario   
 }
 
+
 // Dados de Contato
-function dadosContato(telefone, email,git,linkedin){
-    //let arrContato = []
+function dadosContato(e){
+    e.preventDefault()
+
+    const $telefone = document.getElementById("telefone").value
+    const $email = document.getElementById("email").value
+    const $github = document.getElementById("github").value
+    const $linkedin = document.getElementById("linkedin").value
+
      const contato = {
-        telefone: telefone,
-        email: email,
-        git: git,
-        linkedin: linkedin,  
+        telefone: $telefone,
+        email: $email,
+        git: $github,
+        linkedin: $linkedin,  
     }
-    return contato
+    /* console.log(contato) */
+     return contato 
 }
 
 
 // Dados Endereço
-function dadosEndereco(rua, num, bairro){
-    //let arrEnde = []
+function dadosEndereco(e){
+    e.preventDefault()
+
+    const $logradouro = document.getElementById("logradouro").value
+    const $cidadeUF = document.getElementById("cidadeUF").value
     const endereco = {
-       rua: rua,
-       num: num,
-       bairro: bairro,
+       rua: $logradouro,
+       cidadeUF: $cidadeUF,
    }
+   /* console.log(endereco) */
     return endereco 
 }
 
 //Dados Tecnologias
 const arrTecnologias = []
-function dadosTecnologia(tecnologia){      
-    arrTecnologias.push(tecnologia)
-    return arrTecnologias
+function dadosTecnologia(e){ 
+    e.preventDefault()     
+    let $tecnologia = document.getElementById("tecnologia").value
+    arrTecnologias.push($tecnologia)
+    /* console.log(arrTecnologias) */
+    document.getElementById("tecnologia").value = ""    
+    
 }
 
 //Dados idioma
 const arrIdioma = []
-function dadosIdioma(idioma){    
-    arrIdioma.push(idioma)
-    return arrIdioma
+function dadosIdioma(e){ 
+    e.preventDefault();   
+    const $idioma = document.getElementById("idioma").value
+    arrIdioma.push($idioma) 
+    document.getElementById("idioma").value = ""
+   /* console.log(arrIdioma) */
 }
 
 // objetivo
-function dadosObjetivo(objetivo){    
-    return objetivo = { objetivo: objetivo}
+function dadosObjetivo(e){
+    e.preventDefault();   
+    const $objetivo = document.getElementById("objetivo").value 
+    const objetivo = { 
+        objetivo: $objetivo
+    }
+    document.getElementById("objetivo").value = ""    
+   /*  console.log(objetivo) */
+    return objetivo
   
 }
 
 
 // Formação
 const arrFormacao = []
-function dadosFormacao(formacao, entidade, ano){   
+function dadosFormacao(e){ 
+    e.preventDefault();  
+
+    const $formacao = document.getElementById("formacao").value
+    const $entidadeFormacao = document.getElementById("entidadeFormacao").value
+    const $anoFormacao = document.getElementById("anoFormacao").value
     const formacoes = {
-        formacao: formacao,
-        entidade: entidade,
-        ano: ano
+        formacao: $formacao,
+        entidade: $entidadeFormacao,
+        ano: $anoFormacao
     } 
-     arrFormacao.push(formacoes)  
-     return arrFormacao
+     arrFormacao.push(formacoes) 
+
+     document.getElementById("formacao").value  = ""
+     document.getElementById("entidadeFormacao").value  = ""
+     document.getElementById("anoFormacao").value = ""
+    /* console.log(arrFormacao) */
 }
 
 // Cursos
 const arrCurso = []
-function dadosCurso(curso, entidade, ano){   
+function dadosCurso(e){   
+    e.preventDefault();
+
+    const $curso = document.getElementById("curso").value
+    const $entidadeCurso = document.getElementById("entidadeCurso").value
+    const $anoCurso = document.getElementById("anoCurso").value
     const cursos = {
-        curso: curso,
-        entidade: entidade,
-        ano: ano
+        curso: $curso,
+        entidadeCurso: $entidadeCurso,
+        ano: $anoCurso
     } 
      arrCurso.push(cursos)  
-     return arrCurso
+   
+     document.getElementById("curso").value = ""
+     document.getElementById("entidadeCurso").value = ""
+     document.getElementById("anoCurso").value = ""
+
+     /* console.log(arrCurso) */
 }
 
 // Experiencia
 const arrExperiencia = []
-function dadosExperiencia(cargo, empresa, ano){   
+function dadosExperiencia(e){   
+    e.preventDefault();
+
+    const $cargoExperiencia = document.getElementById("cargoExperiencia").value
+    const $empresa = document.getElementById("empresa").value
+    const $anoSaida = document.getElementById("anoSaida").value
     const experiencia = {
-        cargo: cargo,
-        empresa: empresa,
-        ano: ano
+        cargo: $cargoExperiencia,
+        empresa: $empresa,
+        ano: $anoSaida
     } 
      arrExperiencia.push(experiencia)  
-     return arrExperiencia
+
+     document.getElementById("cargoExperiencia").value = ""
+     document.getElementById("empresa").value = ""
+     document.getElementById("anoSaida").value = ""
+    /* console.log(arrExperiencia) */
+ 
 }
 
-
-
-
-
-
 // Dados Curriculo - objeto final
-const curriculo = function(dadosUsuario, dadosContato, dadosEndereco, dadosTecnologia, dadosIdioma, dadosObjetivo,dadosFormacao,dadosCurso,dadosExperiencia){
+const curriculos = []
+function cadCurriculo(e){
+  e.preventDefault();
+  
     const curriculo = {  
-           dadosPessoais: dadosUsuario,
-           contato: dadosContato,
-           enderecoCompleto: dadosEndereco,
-           tecnologias: dadosTecnologia,
-           idiomas: dadosIdioma,
-           objetivo: dadosObjetivo,
-           formacao: dadosFormacao,
-           cursos: dadosCurso,
-           experiencia: dadosExperiencia
+           dadosPessoais: dadosPessoais(e),
+           contato: dadosContato(e),
+           enderecoCompleto: dadosEndereco(e),
+           tecnologias: arrTecnologias,
+           idiomas: arrIdioma,
+           objetivo: dadosObjetivo(e),
+           formacao: arrFormacao,
+           cursos: arrCurso,
+           experiencia: arrExperiencia
         }
    
+    curriculos.push(curriculo)
+    
+     console.log(curriculos)
     return curriculo
 }
 
-const dados = dadosPessoais('marcelo', 34, 'Analisata de Sistemas','url:imagem da foto')
-
-const contato = dadosContato('85985859595', 'email@email.com','github.com.br','linkedin.com.br')
-
-const endereco = dadosEndereco('Rua das Papoulas', 321, 'Pappulas')
-
-
-const tecnologia = dadosTecnologia('Javascript')
-const tecnologia1 = dadosTecnologia('Java')
-const tecnologia2 = dadosTecnologia('BootStrap')
-
-const idioma = dadosIdioma('Igles')
-const idioma2 = dadosIdioma('Espanhol')
-
-const objetivo = dadosObjetivo('Emprego na area de programação')
-
-const formacao = dadosFormacao('Analise e Desenvolvimento de Sistemas', 'Estacio', 2020 )
-
-const curso = dadosCurso('Logica de Programação', 'Curso Em Video', 2020 )
-const curso1 = dadosCurso('Programação', 'Curso Em Video', 2020 )
-
-const experiencia = dadosExperiencia('Analista TI', 'Xpto S/A', 2015)
-const experiencia2 = dadosExperiencia('Desenvolvedor', 'Xpto S/A', 2021)
-
-console.log(curriculo(
-    dados, 
-    contato, 
-    endereco, 
-    tecnologia,    
-    idioma, 
-    objetivo,
-    formacao,
-    curso,
-    experiencia,
-
-    ));
+$btnTecnologia.addEventListener('click', dadosTecnologia)
+$btnIdioma.addEventListener('click', dadosIdioma)
+$btnFormacao.addEventListener('click', dadosFormacao)
+$btnCuros.addEventListener('click', dadosCurso)
+$btnExperiencia.addEventListener('click', dadosExperiencia)
+//$btnCurriculo.addEventListener('click', dados)
 
 
-/* nome: $nome,
-idade: Math.abs(ano - new Date().getFullYear()), 
-cargo: $cargo,
-contato:{
-    telefone: $telefone,
-    email: $email,
-    git: $github,
-    linkedin: $linkedin,  
-},
-foto: $foto,
-endereco:{
-    logradouro: $logradouro,
-    cidadeUF: $cidadeUF
-},
-tecnologias: $tecnologia,
-idiomas: $idioma,
-objetivo: $objetivo,
-formacao: $formacao,
-cursos:$curso,
-experiencias:$experiencia, */
+    

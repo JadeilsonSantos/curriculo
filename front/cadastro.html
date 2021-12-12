@@ -28,10 +28,14 @@
                     <legend>DADOS PESSOAIS</legend>
                     <label for="nome">Nome</label>
                     <input type="text" class="form-control" id="nome" placeholder="Seu Nome">
-                    <label for="nome">Data de Nascimento</label>
-                    <input type="date" class="form-control" id="dataDeNascimento" placeholder="Seu Nome">
+                    <label for="dataNascimento">Data de Nascimento</label>
+                    <input type="date" class="form-control" id="dataDeNascimento">
                     <label for="cargo">Cargo</label>
                     <input type="text" class="form-control" id="cargo" placeholder="Seu Cargo">
+                  </fieldset>
+
+                  <fieldset>
+                    <legend>Contatos</legend>
                     <label for="telefone">Telefone</label>
                     <input type="text" class="form-control" id="telefone" placeholder="Seu Telefone">
                     <label for="email">Email</label>
@@ -56,19 +60,18 @@
                     <legend>TECNOLOGIAS QUE DOMINO</legend>
                     <label for="tecnologia">Digite 1 por vez</label>
                     <input type="text" class="form-control mb-3" id="tecnologia" placeholder="Html, java, css">
-                   <!--  <button class="btn btn-primary" id="btnTecno" >Salvar</button> -->
+                    <button class="btn btn-primary" id="btnTecnologia" >Incluir</button>
                   </fieldset>
 
                   <fieldset class="mt-3">
                     <legend>IDIOMA</legend>
                     <label for="idioma">Digite 1 por vez</label>
                     <input type="text" class="form-control mb-3" id="idioma" placeholder="Inglês, Espanhol">
-                    <!-- <button class="btn btn-primary" id="btnIdioma">Salvar</button> -->
+                    <button class="btn btn-primary" id="btnIdioma">Incluir</button>
                   </fieldset>
 
                   <fieldset class="mt-3">
-                    <legend>OBJETIVO</legend>
-                   
+                    <legend>OBJETIVO</legend>                   
                     <textarea name="objetivo" id="objetivo" cols="50" rows="10"></textarea>
                   </label>
 
@@ -76,33 +79,39 @@
 
                   <fieldset class="mt-3">
                     <legend>FORMAÇÃO ACADEMICA</legend>
-                    <label for="formacao">Digite 1 por vez</label>
+                    <label for="formacao">Formação</label>
                     <input type="text" class="form-control mb-3" id="formacao" placeholder="Analise de sistemas">
-                    <!-- <button class="btn btn-primary" id="btnFormacao">Salvar</button> -->
+                    <label for="entidade">Entidade Estudantil</label>
+                    <input type="text" class="form-control mb-3" id="entidadeFormacao" placeholder="Faculdade xpto">
+                    <label for="ano">Ano</label>
+                    <input type="date" class="form-control mb-3" id="anoFormacao" >
+                    <button class="btn btn-primary" id="btnFormacao">Incluir</button>
                   </fieldset>
 
                   <fieldset class="mt-3">
                     <legend>CURSOS COMPLEMENTARES</legend>
-                    <label for="curso">Digite 1 por vez</label>
-                    <input type="text" class="form-control mb-3" id="curso" placeholder="Algoritimo, Scrum, javascript">
-                    <!-- <button class="btn btn-primary" id="btnCurso">Salvar</button> -->
+                    <label for="curso">Curso</label>
+                    <input type="text" class="form-control mb-3" id="curso" placeholder="Logica de Programação">
+                    <label for="entidade">Escola</label>
+                    <input type="text" class="form-control mb-3" id="entidadeCurso" placeholder="Algoritimo, Scrum, javascript">
+                    <label for="ano">Ano</label>
+                    <input type="date" class="form-control mb-3" id="anoCurso" >
+                    <button class="btn btn-primary" id="btnCurso">Incluir</button>
                   </fieldset>   
 
                   <fieldset class="mt-3">
                     <legend>EXPERIENCIAS</legend>
-                    <label for="experiencia">Digite 1 por vez</label>
-                    <input type="text" class="form-control mb-3" id="experiencia" placeholder="analista, desenvolvedor">
-                   <!--  <button class="btn btn-primary" id="btnCurso">Salvar</button> -->
+                    <label for="cargo">Cargo/Função</label>
+                    <input type="text" class="form-control mb-3" id="cargoExperiencia" placeholder="analista, desenvolvedor">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" class="form-control mb-3" id="empresa" placeholder="analista, desenvolvedor">
+                    <label for="experiencia">Ano Saida</label>
+                    <input type="date" class="form-control mb-3" id="anoSaida" >
+                    <button class="btn btn-primary" id="btnExperiencia">Incluir</button>
                   </fieldset>              
-                
-                <!-- <div class="form-group">
-                  <label for="dataDeNascimento">Data de Nascimento</label>
-                  <input type="date" class="form-control" id="dataDeNascimento">
-                </div> -->
                 </div>
-                <button class="btn btn-success" id="botao1" >Cadastrar Curriculo</button>
-               <!--  <button class="btn btn-info" id="botao2">Curriculos Cadastrados</button> -->
               </form>
+              <button class="btn btn-success" onclick="cadCurriculo(event)">Cadastrar Curriculo</button>
         </section>
         <br>
         <hr>
@@ -115,6 +124,6 @@
           </div>
         </footer>
     </div>
-        <script src="./js/script.js"></script>
+        <script src="./js/firebase.js" ></script>
 </body>
 </html>
