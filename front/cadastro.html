@@ -14,8 +14,8 @@
         <span class="navbar-brand mb-0 h1">My iformations </span>
         <form class="form-inline">
           <a href="./curriculo.html" class="btn btn-outline-success my-2 my-sm-0 mr-2" id="btnCurriculo">Curriculo</a>
-          <input class="form-control mr-sm-2" type="search" id="pesquisar" placeholder="Pesquisar" aria-label="Pesquisar">
-          <button class="btn btn-outline-success my-2 my-sm-0" id="btnPesquisar">Pesquisar</button>
+          <!-- <input class="form-control mr-sm-2" type="search" id="pesquisar" placeholder="Pesquisar" aria-label="Pesquisar"> -->
+         <!--  <button class="btn btn-outline-success my-2 my-sm-0" id="btnPesquisar">Pesquisar</button> -->
         </form>
       </nav>
       <hr>
@@ -60,14 +60,14 @@
                     <legend>TECNOLOGIAS QUE DOMINO</legend>
                     <label for="tecnologia">Digite 1 por vez</label>
                     <input type="text" class="form-control mb-3" id="tecnologia" placeholder="Html, java, css">
-                    <button class="btn btn-primary" id="btnTecnologia" >Incluir</button>
+                    <button class="btn btn-primary" onclick="dadosTecnologia(event)" id="btnTecnologia">Incluir</button>
                   </fieldset>
 
                   <fieldset class="mt-3">
                     <legend>IDIOMA</legend>
                     <label for="idioma">Digite 1 por vez</label>
                     <input type="text" class="form-control mb-3" id="idioma" placeholder="Inglês, Espanhol">
-                    <button class="btn btn-primary" id="btnIdioma">Incluir</button>
+                    <button class="btn btn-primary" onclick="dadosIdioma(event)" id="btnIdioma">Incluir</button>
                   </fieldset>
 
                   <fieldset class="mt-3">
@@ -85,7 +85,7 @@
                     <input type="text" class="form-control mb-3" id="entidadeFormacao" placeholder="Faculdade xpto">
                     <label for="ano">Ano</label>
                     <input type="date" class="form-control mb-3" id="anoFormacao" >
-                    <button class="btn btn-primary" id="btnFormacao">Incluir</button>
+                    <button class="btn btn-primary" onclick="dadosFormacao(event)" id="btnFormacao">Incluir</button>
                   </fieldset>
 
                   <fieldset class="mt-3">
@@ -96,7 +96,7 @@
                     <input type="text" class="form-control mb-3" id="entidadeCurso" placeholder="Algoritimo, Scrum, javascript">
                     <label for="ano">Ano</label>
                     <input type="date" class="form-control mb-3" id="anoCurso" >
-                    <button class="btn btn-primary" id="btnCurso">Incluir</button>
+                    <button class="btn btn-primary" onclick="dadosCurso(event)" id="btnCurso">Incluir</button>
                   </fieldset>   
 
                   <fieldset class="mt-3">
@@ -107,7 +107,7 @@
                     <input type="text" class="form-control mb-3" id="empresa" placeholder="analista, desenvolvedor">
                     <label for="experiencia">Ano Saida</label>
                     <input type="date" class="form-control mb-3" id="anoSaida" >
-                    <button class="btn btn-primary" id="btnExperiencia">Incluir</button>
+                    <button class="btn btn-primary" onclick="dadosExperiencia(event)" id="btnExperiencia">Incluir</button>
                   </fieldset>              
                 </div>
               </form>
