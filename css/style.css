@@ -8,7 +8,8 @@
 .grid{
     background-color: rgb(250, 250, 250);
     display: grid;
-    grid-template-columns: 360px 1fr;
+    max-width: 100vw;
+    grid-template-columns: 40% 1fr;
    
     grid-template-areas: 
         'sidebar1 sidebar2'
@@ -18,7 +19,7 @@
 .sidebarL{
     grid-area: sidebar1;
     
-    background-color: rgb(158, 158, 158);
+    background-color: rgb(134, 132, 132);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -39,7 +40,7 @@
 }
 
 .sidebarL .image{
-    margin-top: 10px;
+    margin-top: 2%;
     width: 20rem;
     height: 20rem;
     box-shadow: 5px 5px 5px rgb(87, 87, 87);
@@ -90,8 +91,6 @@ footer{
     display: flex;
     
     justify-content: center;
-    height: 100%;
-    width: 100%;
     color: rgb(255, 255, 255);
     padding: 10px;
     
@@ -122,11 +121,12 @@ footer{
 
 /* media */
 
-@media (max-width: 650px){
+@media (max-width: 720px){
     .grid{
         background-color: rgb(250, 250, 250);
         display: grid;
         grid-template-columns: 1fr;
+        /* grid-template-rows: 1fr; */
        
     
         grid-template-areas:
