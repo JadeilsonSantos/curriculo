@@ -58,6 +58,12 @@
     margin-top: 5px;
 }
 
+#objetivo {
+    width:  100%;
+    font-size: 1.2rem;
+    padding: 5px;
+}
+
 .sidebarR{
     grid-area: sidebar2;    
 
@@ -138,6 +144,12 @@ footer{
     .sidebarL{
         color: black;
         background-color: rgb(240, 240, 240);
+    }
+    #objetivo {
+        width:  100%;
+        font-size: 1.2rem;
+        padding: 5px;
+        color: rgb(56, 56, 56);
     }
 }
 
