@@ -121,7 +121,7 @@ footer{
 
 /* media */
 
-@media (max-width: 720px){
+@media screen and (max-width: 992px){
     .grid{
         background-color: rgb(250, 250, 250);
         display: grid;

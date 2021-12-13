@@ -10,8 +10,7 @@ const $btnCurriculo = document.getElementById("btnCurriculo")
 
 // cadastro dos dados do curriculo
 
-// Dados Pessoais
-
+// Recebe Dados do Formulario
 function getDadosPessoais(e){
     e.preventDefault()
     
@@ -32,7 +31,7 @@ function getDadosPessoais(e){
 }
 
 
-// Dados de Contato
+// Recebe Dados do Formulario
 function getDadosContato(e){
     e.preventDefault()
 
@@ -47,12 +46,12 @@ function getDadosContato(e){
         git: $github,
         linkedin: $linkedin,  
     }
-    /* console.log(contato) */
+   
      return contato 
 }
 
 
-// Dados Endereço
+// Recebe Dados do Formulario
 function getDadosEndereco(e){
     e.preventDefault()
 
@@ -62,11 +61,11 @@ function getDadosEndereco(e){
         rua: $logradouro,
         cidadeUF: $cidadeUF,
     }
-   /* console.log(endereco) */
+   
    return endereco 
 }
 
-//Dados Tecnologias
+// Recebe Dados do Formulario
 const arrTecnologias = []
 function dadosTecnologia(e){ 
     e.preventDefault()     
@@ -77,7 +76,7 @@ function dadosTecnologia(e){
     
 }
 
-//Dados idioma
+// Recebe Dados do Formulario
 const arrIdioma = []
 function dadosIdioma(e){ 
     e.preventDefault();   
@@ -87,7 +86,7 @@ function dadosIdioma(e){
     
 }
 
-// objetivo
+// Recebe Dados do Formulario
 function getDadosObjetivo(e){
     e.preventDefault();   
     const $objetivo = document.getElementById("objetivo").value 
@@ -95,13 +94,13 @@ function getDadosObjetivo(e){
         objetivo: $objetivo
     }
     document.getElementById("objetivo").value = ""    
-    /*  console.log(objetivo) */
+   
     return objetivo
     
 }
 
 
-// Formação
+// Recebe Dados do Formulario
 const arrFormacao = []
 function dadosFormacao(e){ 
     e.preventDefault();  
@@ -119,10 +118,10 @@ function dadosFormacao(e){
     document.getElementById("formacao").value  = ""
     document.getElementById("entidadeFormacao").value  = ""
     document.getElementById("anoFormacao").value = ""
-    /* console.log(arrFormacao) */
+    
 }
 
-// Cursos
+// Recebe Dados do Formulario
 const arrCurso = []
 function dadosCurso(e){   
     e.preventDefault();
@@ -141,10 +140,9 @@ function dadosCurso(e){
     document.getElementById("entidadeCurso").value = ""
     document.getElementById("anoCurso").value = ""
     
-    /* console.log(arrCurso) */
 }
 
-// Experiencia
+// Recebe Dados do Formulario
 const arrExperiencia = []
 function dadosExperiencia(e){   
     e.preventDefault();
@@ -190,11 +188,12 @@ function cadCurriculo(e){
 
 // cadastrar localmente LOCALSTORAGE
 function cadastrar(){
-    //e.preventDefault()    
+        
     localStorage.curriculos = JSON.stringify(curriculos)
 }
-// Funcao Monta Dados Pessoais
 
+
+// Funcao Monta imagem do Perfil
 function foto(){
     let [x] = JSON.parse(localStorage.curriculos).map(curriculo => {
         return curriculo.contato.git
@@ -210,6 +209,7 @@ function foto(){
     .catch(erro => console.log(erro)) 
 
 }
+
 /* function foto(){
     let foto = getData()
     JSON.parse(localStorage.curriculos).map(curriculo => {
@@ -221,9 +221,8 @@ function foto(){
     })
 } */
 
-
+// Funcao Monta Dados Pessoais
 function dadosPessoais(){ 
-
     JSON.parse(localStorage.curriculos).map((curriculo)=> {  
         let $dados = document.getElementById('dados')
         $dados.innerHTML = `
@@ -234,7 +233,7 @@ function dadosPessoais(){
     })        
 }
 
-
+// Funcao Monta Dados Contato
 function contato(){
     JSON.parse(localStorage.curriculos).map((curriculo) => {
         let $contato = document.getElementById('contato')
@@ -250,7 +249,7 @@ function contato(){
     
 }
 
-// Funcao Monta Tecnologia
+// Funcao Monta dados Tecnologia
 function tecnologias(){    
     let [x] = JSON.parse(localStorage.curriculos).map((x)=> {      
         return x.tecnologias
@@ -260,13 +259,13 @@ function tecnologias(){
         let lista = document.createElement('li')
         let tecno = document.getElementById("tecno").appendChild(lista)
         tecno.innerHTML = `<i class="far fa-file-code mr-2"></i>${tecnologia}`
-        //console.log(`<i class="far fa-file-code mr-2"></i>${tecnologia}`)
+       
     })
     
 }
 
 
-// Funcao Monta Idioma
+// Funcao Monta dados Idioma
 function idioma(){    
     let [idioma] = JSON.parse(localStorage.curriculos).map((idioma)=> {      
         return idioma.idiomas
@@ -281,7 +280,7 @@ function idioma(){
     
 }
 
-
+// Funcao Monta dados Objetivo
 function objetivo(){
     JSON.parse(localStorage.curriculos).map(curriculo => {
         let $objetivos = document.getElementById('objetivo')
@@ -289,7 +288,7 @@ function objetivo(){
     })
 }
 
-
+// Funcao Monta dados Formação
 function formacao(){
     let [formacao] = JSON.parse(localStorage.curriculos).map(curriculo => {
         return curriculo.formacao
@@ -305,7 +304,7 @@ function formacao(){
     })
 }
 
-
+// Funcao Monta dados Curso
 function cursos(){
     let [cursos] = JSON.parse(localStorage.curriculos).map(curriculo => {
         return curriculo.cursos
@@ -323,7 +322,7 @@ function cursos(){
     })
 }
 
-
+// Funcao Monta dados Experiencia
 function experiencia(){
     let [experiencia] = JSON.parse(localStorage.curriculos).map(curriculo => {
         return curriculo.experiencia
@@ -341,7 +340,7 @@ function experiencia(){
     })
 }
 
-
+// Funcao Monta Curriculo no HTML
 function meuCurriculo(){
     dadosPessoais()
     foto()
