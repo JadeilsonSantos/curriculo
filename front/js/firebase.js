@@ -190,8 +190,7 @@ function cadCurriculo(e){
 
 // cadastrar localmente LOCALSTORAGE
 function cadastrar(){
-    //e.preventDefault()
-    
+    //e.preventDefault()    
     localStorage.curriculos = JSON.stringify(curriculos)
 }
 // Funcao Monta Dados Pessoais
@@ -199,25 +198,25 @@ function foto(){
     JSON.parse(localStorage.curriculos).map(curriculo => {
         let $foto = document.getElementById('foto')
         $foto.innerHTML = `
-        <img src="${curriculo.dadosPessoais.foto}"
+        <img src="${curriculo.DadosPessoais.foto}"
         alt="gatinha" srcset="" class="image">
         `
     })
 }
-foto()
+
 
 function dadosPessoais(){ 
 
     JSON.parse(localStorage.curriculos).map((curriculo)=> {  
         let $dados = document.getElementById('dados')
         $dados.innerHTML = `
-        <h2>${curriculo.dadosPessoais.nome}</h2>
-        <h4>${curriculo.dadosPessoais.cargo}</h4>
-        <p>Idade: ${curriculo.dadosPessoais.idade} Anos
+        <h2>${curriculo.DadosPessoais.nome}</h2>
+        <h4>${curriculo.DadosPessoais.cargo}</h4>
+        <p>Idade: ${curriculo.DadosPessoais.idade} Anos
         `
     })        
 }
-dadosPessoais()
+
 
 function contato(){
     JSON.parse(localStorage.curriculos).map((curriculo) => {
@@ -233,7 +232,7 @@ function contato(){
     })
     
 }
-contato()
+
 // Funcao Monta Tecnologia
 function tecnologias(){    
     let [x] = JSON.parse(localStorage.curriculos).map((x)=> {      
@@ -248,7 +247,7 @@ function tecnologias(){
     })
     
 }
-tecnologias()
+
 
 // Funcao Monta Idioma
 function idioma(){    
@@ -264,7 +263,7 @@ function idioma(){
     })
     
 }
-idioma()
+
 
 function objetivo(){
     JSON.parse(localStorage.curriculos).map(curriculo => {
@@ -272,7 +271,7 @@ function objetivo(){
         $objetivos.innerHTML += `<p>${curriculo.objetivo.objetivo}</p>`
     })
 }
-objetivo()
+
 
 function formacao(){
     let [formacao] = JSON.parse(localStorage.curriculos).map(curriculo => {
@@ -288,7 +287,7 @@ function formacao(){
          `
     })
 }
-formacao()
+
 
 function cursos(){
     let [cursos] = JSON.parse(localStorage.curriculos).map(curriculo => {
@@ -306,7 +305,7 @@ function cursos(){
             `
     })
 }
-cursos()
+
 
 function experiencia(){
     let [experiencia] = JSON.parse(localStorage.curriculos).map(curriculo => {
@@ -324,7 +323,19 @@ function experiencia(){
             `
     })
 }
-experiencia()
+
+
+function meuCurriculo(){
+    dadosPessoais()
+    foto()
+    contato()
+    tecnologias()
+    idioma()
+    objetivo()
+    formacao()
+    cursos()
+    experiencia()
+}
 
 
 
@@ -340,9 +351,7 @@ experiencia()
 
 
 
-
-
-function meuCurriculo(){   
+/* function meuCurriculo(){   
 
     let curriculo = JSON.parse(localStorage.curriculos)
         
@@ -460,7 +469,7 @@ function meuCurriculo(){
     }
     
 }
-
+ */
     //$btnTecnologia.addEventListener('click', dadosTecnologia)
    /*  $btnIdioma.addEventListener('click', dadosIdioma)
     $btnFormacao.addEventListener('click', dadosFormacao)
