@@ -1,3 +1,17 @@
+// conectar com firebase
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBk97D9AaLWBBrboL3Mp0TX8JuznZmIlKo",
+    authDomain: "projeto-curriculo-c58f4.firebaseapp.com",
+    projectId: "projeto-curriculo-c58f4",
+    storageBucket: "projeto-curriculo-c58f4.appspot.com",
+    messagingSenderId: "466592102614",
+    appId: "1:466592102614:web:1a09ddcf6387fa41e5b177"
+  };
+
+  firebase.initializeApp(firebaseConfig)
+  let db = firebase.firestore()
+
 
 // Botoes
 const $btnTecnologia = document.getElementById("btnTecnologia")
@@ -18,13 +32,13 @@ function getDadosPessoais(e){
     const $dataNascimento = document.getElementById("dataDeNascimento").value
     const ano = new Date($dataNascimento).getFullYear()
     const $cargo = document.getElementById("cargo").value
-    const $foto = document.getElementById("foto").value
+    /* const $foto = document.getElementById("foto").value */
     
     const usuario = {
         nome: $nome,
         idade: Math.abs(ano - new Date().getFullYear()),
         cargo: $cargo,
-        foto: $foto
+        /* foto: $foto */
     }    
     
     return usuario   
@@ -169,7 +183,7 @@ const curriculos = []
 function cadCurriculo(e){
     e.preventDefault();
     
-    const curriculo = {  
+    /* const curriculo = {  
         DadosPessoais: getDadosPessoais(e),
         contato: getDadosContato(e),
         enderecoCompleto: getDadosEndereco(e),
@@ -179,17 +193,36 @@ function cadCurriculo(e){
            formacao: arrFormacao,
            cursos: arrCurso,
            experiencia: arrExperiencia
-        }
-        
-        curriculos.push(curriculo)    
-    console.log(curriculos)
+        }         */
+        //curriculos.push(curriculo)    
+    //console.log(curriculos)
     cadastrar(e)
+    //return curriculo
 }
 
-// cadastrar localmente LOCALSTORAGE
-function cadastrar(){
+// cadastrar no FireStore do Firebase
+async function cadastrar(e){    
+    e.preventDefault()    
+    //let curriculo = cadCurriculo(e)
+    try {
+        await db.collection('curriculos').add({
+            DadosPessoais: getDadosPessoais(e),
+            contato: getDadosContato(e),
+            enderecoCompleto: getDadosEndereco(e),
+               tecnologias: arrTecnologias,
+               idiomas: arrIdioma,
+               objetivo: getDadosObjetivo(e),
+               formacao: arrFormacao,
+               cursos: arrCurso,
+               experiencia: arrExperiencia
+        })
         
-    localStorage.curriculos = JSON.stringify(curriculos)
+    } catch (error) {
+        console.log(error)
+    }
+
+
+    //localStorage.curriculos = JSON.stringify(curriculos)
 }
 
 

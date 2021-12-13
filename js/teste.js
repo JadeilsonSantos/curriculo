@@ -1,4 +1,4 @@
-
+/* 
 const getData = () => {
     let [x] = JSON.parse(localStorage.curriculos).map(curriculo => {
         return curriculo.contato.git
@@ -11,4 +11,5 @@ const getData = () => {
     .catch(erro => console.log(erro)) 
 
 }
-document.getElementById('teste').addEventListener('click', getData) 
+document.getElementById('teste').addEventListener('click', getData)  */
+
