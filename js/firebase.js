@@ -241,8 +241,8 @@ function contato(){
         <ul class="ml-3">
             <li><i class="fab fa-whatsapp mr-2"></i></i>${curriculo.contato.telefone}</li>
             <li><i class="fas fa-at mr-2"></i>${curriculo.contato.email}</li>
-            <li><i class="fab fa-github mr-2"></i> ${curriculo.contato.git}</li>
-            <li><i class="fab fa-linkedin mr-2"></i>${curriculo.contato.linkedin}</li>
+            <li><i class="fab fa-github mr-2"></i><a href="${curriculo.contato.git}" target="_blank">${curriculo.contato.git}</a></li>
+            <li> <i class="fab fa-linkedin mr-2"></i> <a href="${curriculo.contato.linkedin}" target="_blank">${curriculo.contato.linkedin}</a></li>
             <li><i class="fas fa-map-marker-alt mr-2"></i>${curriculo.enderecoCompleto.rua} - ${curriculo.enderecoCompleto.cidadeUF} </li>
         </ul>        `
     })
