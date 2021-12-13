@@ -194,15 +194,32 @@ function cadastrar(){
     localStorage.curriculos = JSON.stringify(curriculos)
 }
 // Funcao Monta Dados Pessoais
+
 function foto(){
+    let [x] = JSON.parse(localStorage.curriculos).map(curriculo => {
+        return curriculo.contato.git
+    })
+    let $foto = document.getElementById("foto")
+    let user = x.split('/').slice(-1).join('')
+    const url = `https://api.github.com/users/${user}`
+    fetch(url).then( response=> { return response.json()})
+    .then(data => $foto.innerHTML = `
+    <img src="${data.avatar_url}"
+    alt="foto do Perfil" srcset="" class="image">
+    `)
+    .catch(erro => console.log(erro)) 
+
+}
+/* function foto(){
+    let foto = getData()
     JSON.parse(localStorage.curriculos).map(curriculo => {
         let $foto = document.getElementById('foto')
         $foto.innerHTML = `
-        <img src="${curriculo.DadosPessoais.foto}"
-        alt="gatinha" srcset="" class="image">
+        <img src="${foto}"
+        alt="foto do Perfil" srcset="" class="image">
         `
     })
-}
+} */
 
 
 function dadosPessoais(){ 
