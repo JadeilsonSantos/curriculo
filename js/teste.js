@@ -15,20 +15,20 @@ async function getData(){
     let $img = document.getElementById("img")
     let db = await firebase.firestore()
     let curriculo = await db.collection('curriculos')
-    let dados = await curriculo.get()
+    let dados = await curriculo.get('curriculo')
     let user = ''
+    let img = ''
     await dados.forEach(dado => {       
           user = `${(dado.data().contato.git).split('/').slice(-1).join('')}`
+          let url =  `https://api.github.com/users/${user}`
+          fetch(url).then( response=> { return response.json()})
+          .then(data => $img.innerHTML += `<img src='${data.avatar_url}'>`)
+          .catch(erro => console.log(erro)) 
     });
-     console.log(user)
     
-    let url =  `https://api.github.com/users/${user}`
-    fetch(url).then( response=> { return response.json()})
-    .then(data => $img.innerHTML += `<img src='${data.avatar_url}'>`)
-    .catch(erro => console.log(erro)) 
 
 }
-document.getElementById('teste').addEventListener('click', getData)  
+//document.getElementById('teste').addEventListener('click', getData)  
 
 async function getFoto(){
     let db = await firebase.firestore()
