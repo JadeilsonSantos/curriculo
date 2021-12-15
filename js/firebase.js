@@ -10,7 +10,8 @@ const firebaseConfig = {
   };
 
   firebase.initializeApp(firebaseConfig)
-  let db = firebase.firestore()
+  
+  let db = firebase.firestore() 
 
 
 // Botoes
@@ -205,7 +206,7 @@ async function cadastrar(e){
     e.preventDefault()    
     //let curriculo = cadCurriculo(e)
     try {
-        await db.collection('curriculos').add({
+        await db.collection('curriculos').doc('curriculo').set({
             DadosPessoais: getDadosPessoais(e),
             contato: getDadosContato(e),
             enderecoCompleto: getDadosEndereco(e),
@@ -215,31 +216,43 @@ async function cadastrar(e){
                formacao: arrFormacao,
                cursos: arrCurso,
                experiencia: arrExperiencia
-        })
+            })
+            alert('Cadastrado com Sucesso')
         
     } catch (error) {
         console.log(error)
     }
 
-
     //localStorage.curriculos = JSON.stringify(curriculos)
 }
 
 
+/* async function getDados(){    
+    let foto = document.createElement('img')
+    let curriculo = await db.collection('curriculos')
+    let dados = await curriculo.get()
+    let fotos = await dados.forEach(element => {     
+        element.data().contato.git
+         console.log(element.id, '->', element.data().contato.git)
+        return element.data().contato.git     
+        return element.id, '->', element.data().contato.git 
+    });
+    return fotos.split('/').slice(-1).join('')
+    console.log(fotos)
+} */
 // Funcao Monta imagem do Perfil
-function foto(){
-    let [x] = JSON.parse(localStorage.curriculos).map(curriculo => {
-        return curriculo.contato.git
-    })
+//getDados()
+async function foto(){  
     let $foto = document.getElementById("foto")
-    let user = x.split('/').slice(-1).join('')
-    const url = `https://api.github.com/users/${user}`
-    fetch(url).then( response=> { return response.json()})
+    
+    const url = `https://api.github.com/users/fmarcelomorais`
+
+    fetch(url).then( response => { return response.json()})
     .then(data => $foto.innerHTML = `
     <img src="${data.avatar_url}"
     alt="foto do Perfil" srcset="" class="image">
     `)
-    .catch(erro => console.log(erro)) 
+    .catch(erro => console.log(erro))  
 
 }
 
@@ -375,7 +388,7 @@ function experiencia(){
 
 // Funcao Monta Curriculo no HTML
 function meuCurriculo(){
-    dadosPessoais()
+    dadosPessoais()    
     foto()
     contato()
     tecnologias()
