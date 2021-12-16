@@ -27,8 +27,8 @@ async function meuCurriculo() {
         <ul >
             <li><i class="fab fa-whatsapp mr-2"></i> ${x.data().contato.telefone}</li>
             <li><i class="fas fa-at mr-2"></i> ${x.data().contato.email}</li>
-            <li><i class="fab fa-github mr-2"></i> ${x.data().contato.git}</li>
-            <li><i class="fab fa-linkedin mr-2"></i> ${x.data().contato.linkedin}</li>
+            <li><i class="fab fa-github mr-2"></i><a href="${x.data().contato.git}"> ${x.data().contato.git}<a/></li>
+            <li><i class="fab fa-linkedin mr-2"></i><a href="${x.data().contato.linkedin}"> ${x.data().contato.linkedin}<a/></li>
             <li><i class="fas fa-map-marker-alt mr-2"></i>${x.data().enderecoCompleto.rua} - ${x.data().enderecoCompleto.cidadeUF}</li>
        </ul>`
     })
@@ -39,7 +39,7 @@ async function meuCurriculo() {
             user = `${(foto.data().contato.git).split('/').slice(-1).join('')}`
             let url =  `https://api.github.com/users/${user}`
             fetch(url).then( response=> { return response.json()})
-            .then(data => $foto.innerHTML = `<img src='${data.avatar_url}'>`)
+            .then(data => $foto.innerHTML = `<img src='${data.avatar_url}' alt="foto do curriculo" srcset="" class="image">`)
             .catch(erro => console.log(erro)) 
     })
     
