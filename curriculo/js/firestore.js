@@ -140,15 +140,22 @@ function curriculo(){
 }
 
 async function cadastrar(){
+    let doc = curriculo()
+    let docName = String(doc.DadosPessoais.nome)
+    let docTel = String(doc.contato.telefone)
+    let nome = docName.split('').slice(0, 6).join('').toLocaleLowerCase()
+    let tel = docTel.split('').slice(0, 6).join('')
+    let nomeTel = nome.concat(tel)
+    //console.log(nomeTel)
     const db = firebase.firestore() 
     
     try {
-        await db.collection('curriculos').doc('currculo').set(curriculo())
+        await db.collection('curriculos').doc(`curriculo-${nomeTel}`).set(curriculo())
         alert('Cadastrado com Sucesso')
     } catch (error) {
         alert('Erro ao Cadastrar')
         console.log(error)
-    }
+    }  
 
 }
 
