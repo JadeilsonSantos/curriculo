@@ -1,5 +1,6 @@
 
 async function meuCurriculo() {
+
     let $dados = document.getElementById('dados')
     let $contato = document.getElementById('contato')
     let $tecno = document.getElementById('tecno')
@@ -14,6 +15,9 @@ async function meuCurriculo() {
     let dados = await db.collection('curriculos')
     let info = await dados.get()
 
+    info.forEach(element => {
+        console.log(element.data())
+    });
     // Dados Pessoais
     await info.forEach(x => {
         $dados.innerHTML += ` 
@@ -70,13 +74,14 @@ async function meuCurriculo() {
 
     //Formação
 
-    info.forEach(form =>{
-        let [f] = form.data().formacao
+    let forms = [] 
+    info.forEach(form => forms.push(...form.data().formacao))
+    forms.forEach(f =>{
         $formacao.innerHTML += `
         <li><strong>${f.formacao}</strong></li>
         <li>${f.entidade}</li>
         <li>${new Date(f.ano).getFullYear()}</li>
-        `
+        ` 
     })
 
     //Cursos
@@ -95,27 +100,12 @@ async function meuCurriculo() {
     
     let experiencias = []
     info.forEach(experiencia => experiencias.push(...experiencia.data().experiencias))    
-    experiencias.forEach(experiencia => {
+    experiencias.map(experiencia => {
         $experiencia.innerHTML += `
         <li><strong>${experiencia.empresa}</strong></li>
         <li>${experiencia.cargo}</li>
         <li>${new Date(experiencia.anoSaida).getFullYear()}</li>
         ` 
     })
-
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
