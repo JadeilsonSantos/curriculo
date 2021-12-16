@@ -14,21 +14,15 @@
 <body onload="meuCurriculo()">
 
     <!-- <div class="container-fluid"> -->
-        <div class="container-fluid">
+                <div class="container-fluid">
 
             <nav class="navbar navbar-dark bg-dark">
                 <span class="navbar-brand mb-0 h1">Meu Curriculo</span>
                 <a href="./index.html"><button class="btn btn-outline-info my-2 my-sm-0">Inicio</button></a>
-                <!-- <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="search" id="pesquisar" placeholder="Pesquisar"
-                        aria-label="Pesquisar">
-                    <button class="btn btn-outline-success my-2 my-sm-0" id="btnPesquisar">Pesquisar</button>
-                </form> -->
             </nav>
         </div>
         <hr>
-
-        <main class="container" >
+        <main class="container" >                  
             <div class="grid">
                 <div class="sidebarL">
                     <div class="img" id="foto">
@@ -39,28 +33,18 @@
                     <div class="contatos mt-4 ml-3">
                         <div class="dadosPessoais">
                             <div id="dados"></div>
-                            <!-- <h2>MARCELO MORAIS</h2>
-                            <h4>Analista de Sistemas</h4> -->
                             <hr>
                             <div class="contato">
                                 <h2>Contato</h2>
-                                <div id="contato"></div>
-                                <!-- <ul class="ml-3">
-                                    <li><i class="fas fa-at mr-2"></i> email@gmail.com</li>
-                                    <li><i class="fab fa-github mr-2"></i> Github: github.com</li>
-                                    <li><i class="fab fa-linkedin mr-2"></i>Linkedin: linkedin.com</li>
-                                    <li><i class="fas fa-map-marker-alt mr-2"></i>Endereço: Rua dos Gabinetes, x86 - Fortaleza-Ce - 60.123.123</li>
-                                </ul> -->
+                                <div id="contato">
+
+                                </div>
                             </div>
                             <hr>
                             <div class="tecnologias">
                                 <h2>Tecnologias que Domino</h2>
                                 <ul class="ml-3" id="tecno">
-                                  <!--   <li><i class="far fa-file-code mr-2"></i>HTML</li>
-                                    <li><i class="far fa-file-code mr-2"></i>CSS</li>
-                                    <li><i class="far fa-file-code mr-2"></i>Javascript</li>
-                                    <li><i class="far fa-file-code mr-2"></i>NodeJS</li>
-                                    <li><i class="far fa-file-code mr-2"></i>Bootstrap</li> -->
+                                    
                                 </ul>
                             </div>
                             <hr>
@@ -75,8 +59,7 @@
                 </div>
 
                 <div class="sidebarR  m-5">
-                    <div class="content">
-                        
+                    <div class="content">                        
                         <div class="resumo">
                             <div id="objetivo">
                                 <h2>OBJETIVO</h2>
@@ -93,43 +76,49 @@
                                    <!--  <li><strong>Analise e Desenvolvimento de Sistemas</strong></li>
                                     <li>Estacio</li>
                                     <li>2020</li>
-                                </ul> -->
+                                   -->
+                                </ul> 
                             </div>
                         </div>
                         <hr>
                         <div class="cursos">
                             <h2>CURSOS COMPLEMENTARES</h2>
-                            <div class="curso ml-3 mt-4" id="cursos">
-                                <!-- <ul class="mt-4" >
-                                    <li><strong>Programação Orientada a Objeto</strong></li>
+                            <div class="curso ml-3 mt-4" >
+                                <ul class="mt-4" id="cursos">
+                                   <!--  <li><strong>Programação Orientada a Objeto</strong></li>
                                     <li>Curso em Video</li>
-                                    <li>2020</li>
-                                </ul> -->
+                                    <li>2020</li> -->
+                                </ul> 
                             </div>
                           <hr>
                             <h2>EXPERIENCIAS</h2>
-                            <div class="experiencias ml-3 mt-4" id="experiencia">
-                              <!--   <ul class="mt-4">
-                                    <li><strong>Desenvolvedor FullStack</strong></li>
+                            <div class="experiencias ml-3 mt-4" >
+                                 <ul class="mt-4" id="experiencia">
+                                  <!--   <li><strong>Desenvolvedor FullStack</strong></li>
                                     <li>Empresa XPTO</li>
-                                    <li>2020 a 2021</li>
-                                </ul> -->
+                                    <li>2020 a 2021</li> -->
+                                </ul> 
                             </div>
                             
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
-    <!-- </div> -->
-    <footer>
-        <div class="dados bg-dark mt-2">
-          <strong>Desenvolvido por Marcelo Morais</strong> 
-        </div>
-      </footer>
+            <hr>
+            <footer >
+                <div class="dados bg-dark mt-2">
+                  <strong>Desenvolvido por Marcelo Morais</strong> 
+                </div>
+            </footer>
+      
 
-    <script src="./js/firebase.js"></script>
-  
+
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+      <script src="../back/js/curriculo.js"></script>
+      <script src="../back/js/firebase.js"></script>
+      <script src="../back/js/firestore.js"></script>
+   
     <script src="https://kit.fontawesome.com/e0890993f0.js" crossorigin="anonymous"></script>
 </body>
 

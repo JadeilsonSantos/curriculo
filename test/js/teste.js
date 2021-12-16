@@ -20,9 +20,10 @@ async function getData(){
     let img = ''
     await dados.forEach(dado => {       
           user = `${(dado.data().contato.git).split('/').slice(-1).join('')}`
+          console.log(user)
           let url =  `https://api.github.com/users/${user}`
           fetch(url).then( response=> { return response.json()})
-          .then(data => $img.innerHTML += `<img src='${data.avatar_url}'>`)
+          .then(data => $img.innerHTML = `<img src='${data.avatar_url}'>`)
           .catch(erro => console.log(erro)) 
     });
     

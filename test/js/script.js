@@ -1,7 +1,19 @@
-const $botao1 = document.querySelector("#botao1")
+
+const firebaseConfig = {
+    apiKey: "AIzaSyBk97D9AaLWBBrboL3Mp0TX8JuznZmIlKo",
+    authDomain: "projeto-curriculo-c58f4.firebaseapp.com",
+    projectId: "projeto-curriculo-c58f4",
+    storageBucket: "projeto-curriculo-c58f4.appspot.com",
+    messagingSenderId: "466592102614",
+    appId: "1:466592102614:web:1a09ddcf6387fa41e5b177"
+  };
+
+  firebase.initializeApp(firebaseConfig)
+
+/* const $botao1 = document.querySelector("#botao1")
 const $botao2 = document.querySelector("#botao2") 
 const $botao3 = document.querySelector("#btnPesquisar")
-const $btnCurriculo = document.querySelector("#btnCurriculo")
+const $btnCurriculo = document.querySelector("#btnCurriculo") */
 
 
 const usuarios = []
@@ -124,56 +136,60 @@ function listausuarios(e){
     
 }
 
-function meuCurriculo(){
+async function meuCurriculo(){
     //e.preventDefault()
 
     const $main = document.querySelector("#curriculo")
-    //$main.innerHTML = ""
+    let db = await firebase.firestore()
+    let curriculo = await db.collection('curriculos')
+    let dados = await curriculo.get()
 
-    if(localStorage.length != 0){
-        let usuarios = JSON.parse(localStorage.usuarios)
-        console.log(usuarios);
-        usuarios.forEach(usuario => {
+    await dados.forEach(usuario =>{
+        let user = (usuario.data().contato.git).split('/').slice(-1).join('')
+        if(usuario){
+            const imagem = async () => {
+                const response = await fetch(`https://api.github.com/users/${user}`)
+                const data = await response.json()
+                return data.avatar_url
+            }
+            //let img = imagem().then(i => i)
+            //console.log(img)
             $main.innerHTML += `            
             <div class="grid mb-5">
                 <div class="sidebarL">
                     <div class="img">
-                        <img src="${usuario.foto}"
+                        <img src="${""}"
                             alt="gatinha" srcset="" class="image">
                     </div>
 
                     <div class="contatos mt-4 ml-3">
                         <div class="dadosPessoais">
-                            <h2>${usuario.nome}</h2>
-                            <h4>${usuario.cargo}</h4>
-                            <p>${usuario.idade} Anos
+                            <h2>${usuario.data().DadosPessoais.nome}</h2>
+                            <h4>${usuario.data().DadosPessoais.cargo}</h4>
+                            <p>${usuario.data().DadosPessoais.idade} Anos
                             <hr>
                             <div class="contato">
                                 <h2>Contato</h2>
                                 <ul >
-                                <li><i class="fab fa-whatsapp mr-2"></i> ${usuario.contato.telefone}</li>
-                                <li><i class="fas fa-at mr-2"></i> ${usuario.contato.email}</li>
-                                <li><i class="fab fa-github mr-2"></i> ${usuario.contato.git}</li>
-                                <li><i class="fab fa-linkedin mr-2"></i> ${usuario.contato.linkedin}</li>
-                                <li><i class="fas fa-map-marker-alt mr-2"></i>${usuario.endereco.logradouro} - ${usuario.endereco.cidadeUF}</li>
+                                <li><i class="fab fa-whatsapp mr-2"></i> ${usuario.data().contato.telefone}</li>
+                                <li><i class="fas fa-at mr-2"></i> ${usuario.data().contato.email}</li>
+                                <li><i class="fab fa-github mr-2"></i> ${usuario.data().contato.git}</li>
+                                <li><i class="fab fa-linkedin mr-2"></i> ${usuario.data().contato.linkedin}</li>
+                                <li><i class="fas fa-map-marker-alt mr-2"></i>${usuario.data().enderecoCompleto.rua} - ${usuario.data().enderecoCompleto.cidadeUF}</li>
                                 </ul>
                             </div>
                             <hr>
                             <div class="tecnologias">
                                 <h2>Tecnologias que Domino</h2>
                                 <ul class="ml-3">
-                                    <li><i class="far fa-file-code mr-2"></i>${usuario.tecnologias}</li>
-                                    <li><i class="far fa-file-code mr-2"></i>${usuario.tecnologias}</li>
-                                    <li><i class="far fa-file-code mr-2"></i>${usuario.tecnologias}</li>
-                                    <li><i class="far fa-file-code mr-2"></i>${usuario.tecnologias}</li>
-                                    <li><i class="far fa-file-code mr-2"></i>${usuario.tecnologias}</li>
+                                    <li><i class="far fa-file-code mr-2"></i>${usuario.data().tecnologias}</li>
                                 </ul>
                             </div>
                             <hr>
                             <div class="idiomas">
                                 <h2>Idioma</h2>
                                 <ul class="ml-3">
-                                    <li><i class="fas fa-language mr-2"></i>${usuario.idiomas}</li>
+                                    <li><i class="fas fa-language mr-2"></i>${usuario.data().idiomas}</li>
                                 </ul>
                             </div>
                         </div>
@@ -187,16 +203,16 @@ function meuCurriculo(){
                             <div class="objetivo">
                                 <h2>OBJETIVO</h2>
                                 <p>
-                                ${usuario.objetivo}
+                                ${usuario.data().objetivo.objetivo}
                                 </p>
                             </div>
                             <hr>
                             <div class="formacao">
                                 <h2>FORMAÇÃO ACADEMICA</h2>
                                 <ul class="mt-4">
-                                    <li><strong>${usuario.formacao}</strong></li>
-                                    <li>Estacio</li>
-                                    <li>2020</li>
+                                    <li><strong>${usuario.data().formacao.formacao}</strong></li>
+                                    <li>${usuario.data().formacao.entidade}</li>
+                                    <li>${usuario.data().formacao.ano}</li>
                                 </ul>
                             </div>
                         </div>
@@ -205,16 +221,9 @@ function meuCurriculo(){
                             <h2>CURSOS COMPLEMENTARES</h2>
                             <div class="curso ml-3 mt-4">
                                 <ul class="mt-4">
-                                    <li><strong>${usuario.cursos}</strong></li>
-                                    <li>Curso em Video</li>
-                                    <li>2020</li>
-                                </ul>
-                            </div>
-                            <div class="curso ml-3 mt-4">
-                                <ul class="mt-4">
-                                    <li><strong>${usuario.cursos}</strong></li>
-                                    <li>Curso em Video</li>
-                                    <li>2020</li>
+                                    <li><strong>${usuario.data().cursos.curso}</strong></li>
+                                    <li>${usuario.data().cursos.entidadeCurso}</li>
+                                    <li>${usuario.data().cursos.ano}</li>
                                 </ul>
                             </div>
                             <h2>EXPERIENCIAS</h2>
@@ -235,14 +244,14 @@ function meuCurriculo(){
                         </div>
                     </div>
                 </div>
-            </div>
-            `
-        })
-    }else {
-        $main.innerHTML = "<h2>Nenhum Curriculo Cadastrado</h2>"
-    }
-    
-}
+            </div>`
+        }else{
+            $main.innerHTML = "<h2> Nenhum Curriculo Cadastrado</h2>"
+        }
+    })
+   
+}    
+
 
 function deletar(e){
     e.preventDefault();
@@ -252,8 +261,8 @@ function deletar(e){
     //localStorage.removeItem(del)
 }
  
-$botao1.addEventListener('click', cadastrar)
-/* $botao2.addEventListener('click', meuCurriculo)  */
-$botao3.addEventListener('click', pesquisar)  
+/* $botao1.addEventListener('click', cadastrar)
+ *//* $botao2.addEventListener('click', meuCurriculo)  */
+/* $botao3.addEventListener('click', pesquisar)  */ 
 //$btnCurriculo.addEventListener('click', meuCurriculo) 
 

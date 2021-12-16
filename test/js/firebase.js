@@ -11,7 +11,7 @@ const firebaseConfig = {
 
   firebase.initializeApp(firebaseConfig)
   
-  let db = firebase.firestore() 
+ 
 
 
 // Botoes
@@ -154,6 +154,7 @@ function dadosCurso(e){
     document.getElementById("curso").value = ""
     document.getElementById("entidadeCurso").value = ""
     document.getElementById("anoCurso").value = ""
+    return cursos
     
 }
 
@@ -205,6 +206,7 @@ function cadCurriculo(e){
 async function cadastrar(e){    
     e.preventDefault()    
     //let curriculo = cadCurriculo(e)
+    let db = firebase.firestore()
     try {
         await db.collection('curriculos').doc('curriculo').set({
             DadosPessoais: getDadosPessoais(e),
@@ -214,7 +216,7 @@ async function cadastrar(e){
                idiomas: arrIdioma,
                objetivo: getDadosObjetivo(e),
                formacao: arrFormacao,
-               cursos: arrCurso,
+               cursos: cursos(e),
                experiencia: arrExperiencia
             })
             alert('Cadastrado com Sucesso')
@@ -268,15 +270,27 @@ async function foto(){
 } */
 
 // Funcao Monta Dados Pessoais
-function dadosPessoais(){ 
-    JSON.parse(localStorage.curriculos).map((curriculo)=> {  
-        let $dados = document.getElementById('dados')
+async function dadosPessoais(){ 
+    let db = await firebase.firestore()
+    let curriculo = await db.collection('curriculos')
+    let dados = await curriculo.get('curriculo')
+    let $dados = document.getElementById('dados')
+    let info = ''
+    await dados.forEach(dado => info =`
+    <h2>${dado.data().DadosPessoais.nome}</h2>
+    <h4>${dado.data().DadosPessoais.cargo}</h4>
+    <p>Idade: ${dado.data().DadosPessoais.idade} Anos
+    `
+     )
+     $dados.innerHTML += info
+    
+    /* JSON.parse(localStorage.curriculos).map((curriculo)=> {  
         $dados.innerHTML = `
         <h2>${curriculo.DadosPessoais.nome}</h2>
         <h4>${curriculo.DadosPessoais.cargo}</h4>
         <p>Idade: ${curriculo.DadosPessoais.idade} Anos
         `
-    })        
+    })         */
 }
 
 // Funcao Monta Dados Contato
@@ -387,7 +401,7 @@ function experiencia(){
 }
 
 // Funcao Monta Curriculo no HTML
-function meuCurriculo(){
+async function meuCurriculo(){
     dadosPessoais()    
     foto()
     contato()
