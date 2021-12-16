@@ -19,11 +19,11 @@
 .sidebarL{
     grid-area: sidebar1;
     
-    background-color: rgb(134, 132, 132);
+    background-color: rgb(240, 240, 240);
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-
+    padding-bottom: 5%;
     color: rgb(39, 39, 39);
     
 }
@@ -51,6 +51,7 @@
 .sidebarL ul{
     list-style: none;
     font-size: 1.1rem;
+    width: 80%;
    
 }
 .sidebarL ul li{
@@ -62,21 +63,25 @@
     width:  100%;
     font-size: 1.2rem;
     padding: 5px;
+    
+    background-color: rgb(250, 250, 250);
 }
 
 .sidebarR{
     grid-area: sidebar2;    
-
+   
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     flex-wrap: wrap;
+    padding-bottom: 5%;
         
     
 }
 .sidebarR ul{
     list-style: none;
     font-size: 1.1rem;
+    width: 80%;
    
 }
 .sidebarR ul li{
@@ -137,12 +142,12 @@ footer{
 
 /* media */
 
-@media screen and (max-width: 992px){
+@media screen and (max-width: 768px){
     .grid{
         background-color: rgb(250, 250, 250);
         display: grid;
         grid-template-columns: 1fr;
-        /* grid-template-rows: 1fr; */
+        grid-template-rows: 1fr; 
        
     
         grid-template-areas:

@@ -1,6 +1,5 @@
-function dadosUsuario(e){
-    e.preventDefault();
-    
+function dadosPessoais(e){   
+    //e.preventDefault()  
     const $nome = document.querySelector("#nome").value
     const $cargo = document.querySelector("#cargo").value
     const $dataNascimento = document.querySelector("#dataDeNascimento").value
@@ -14,14 +13,22 @@ function dadosUsuario(e){
         
 }
 
+/* function radio(){
+    //e.preventDefault()
+    const $github = document.querySelector("#github")
+    let $rdN = document.getElementsByName("git")
+    
+}
+radio() */
+
 function dadosContato(e){
-    e.preventDefault()
+    //e.preventDefault()  
     const $email = document.querySelector("#email").value
     const $telefone = document.querySelector("#telefone").value
     const $github = document.querySelector("#github").value
     const $linkedin = document.querySelector("#linkedin").value
     //const $foto = document.querySelector("#foto").value
-
+    
     return  contato = {
         telefone: $telefone,
         email: $email,
@@ -30,47 +37,118 @@ function dadosContato(e){
     }  
 }
 
-function usuario(){
+
+function dadosEndereco(e){
+    //e.preventDefault()  
     const $logradouro = document.querySelector("#logradouro").value
     const $bairro = document.querySelector("#bairro").value
     const $cidade = document.querySelector("#cidade").value
     const $estado = document.querySelector("#estado").value
-    const $tecnologia = document.querySelector("#tecnologia").value
-    const $idioma = document.querySelector("#idioma").value
-    const $objetivo = document.querySelector("#objetivo").value
-    const $formacao = document.querySelector("#formacao").value
-    const $curso = document.querySelector("#curso").value
-    const $experiencia = document.querySelector("#experiencia").value
-    let tecnologias = []
-    tecnologias.push($tecnologia)
-    let idiomas = []
-    idiomas.push($idioma)
 
-    let usuario = {
-        nome: $nome,
-        idade: Math.abs(ano - new Date().getFullYear()), 
-        cargo: $cargo,
-        contato:{
-            telefone: $telefone,
-            email: $email,
-            git: $github,
-            linkedin: $linkedin,  
-        },
+    return enedecoCompleto = {
+        logradouro: $logradouro,
+        bairro: $bairro,
+        cidade: $cidade,
+        estado: $estado
+    }
+}
+
+const tecnologias = []
+function dadosTecnologia(e){
+    e.preventDefault()
+    let $tecnologia = document.querySelector("#tecnologia").value
+    tecnologias.push($tecnologia)
+    console.log(tecnologias)
+    document.querySelector("#tecnologia").value = " "
+   
+}
+
+const idiomas = []
+function dadosIdioma(e){
+    e.preventDefault()
+    let $idioma = document.querySelector("#idioma").value
+    idiomas.push($idioma)
+    console.log(idiomas)
+    document.querySelector("#idioma").value = " "
+   
+}
+
+const formacao = []
+function dadosFormacao(e){
+    e.preventDefault()  
+    const $formacao = document.querySelector("#formacao").value
+    const $entidadeFormacao = document.querySelector("#entidadeFormacao").value
+    const $anoFormacao = document.querySelector("#anoFormacao").value
+    let dadosFormacao = {
+        formacao: $formacao,
+        entidade: $entidadeFormacao,
+        ano: $anoFormacao
+    }
+
+    formacao.push(dadosFormacao)    
+
+}
+
+const cursos = []
+function dadosCurso(e){
+    e.preventDefault()  
+    const $curso = document.querySelector("#curso").value
+    const $entidadeCurso = document.querySelector("#entidadeCurso").value
+    const $anoCurso = document.querySelector("#anoCurso").value
+    let dadosCurso = {
+        curso: $curso,
+        entidade: $entidadeCurso,
+        ano: $anoCurso
+    }
+
+    cursos.push(dadosCurso)    
+
+}
+const experiencias = []
+function dadosExperiencia(e){
+    e.preventDefault()  
+    const $cargoExperiencia = document.querySelector("#cargoExperiencia").value
+    const $empresa = document.querySelector("#empresa").value
+    const $anoSaida = document.querySelector("#anoSaida").value
+    let dadosExperiencia = {
+        cargo: $cargoExperiencia,
+        empresa: $empresa,
+        anoSaida: $anoSaida
+    }
+
+    experiencias.push(dadosExperiencia)    
+
+}
+
+function curriculo(){
+    const $objetivo = document.querySelector("#objetivo").value    
+
+    let curriculo = {
+        DadosPessoais: dadosPessoais(),
+        contato: dadosContato(),
         //foto: $foto,
-        endereco:{
-            logradouro: $logradouro,
-            bairro: $bairro,
-            cidade: $cidade,
-            estado: $estado
-        },
+        endereco: dadosEndereco(),
         tecnologias: tecnologias,
         idiomas: idiomas,
         objetivo: $objetivo,
-        formacao: $formacao,
-        cursos:$curso,
-        experiencias:$experiencia,
+        formacao: formacao,
+        cursos: cursos,
+        experiencias: experiencias,
 
     }
-    return usuario
+    return curriculo
+}
+
+async function cadastrar(){
+    const db = firebase.firestore() 
+    
+    try {
+        await db.collection('curriculos').doc('currculo').set(curriculo())
+        alert('Cadastrado com Sucesso')
+    } catch (error) {
+        alert('Erro ao Cadastrar')
+        console.log(error)
+    }
+
 }
 

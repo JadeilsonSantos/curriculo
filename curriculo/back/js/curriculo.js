@@ -29,9 +29,13 @@ async function meuCurriculo() {
             <li><i class="fas fa-at mr-2"></i> ${x.data().contato.email}</li>
             <li><i class="fab fa-github mr-2"></i><a href="${x.data().contato.git}"> ${x.data().contato.git}<a/></li>
             <li><i class="fab fa-linkedin mr-2"></i><a href="${x.data().contato.linkedin}"> ${x.data().contato.linkedin}<a/></li>
-            <li><i class="fas fa-map-marker-alt mr-2"></i>${x.data().enderecoCompleto.rua} - ${x.data().enderecoCompleto.cidadeUF}</li>
-       </ul>`
-    })
+            </ul>
+            <hr>
+            <h2>Endereço</h2>
+            <i class="fas fa-map-marker-alt mr-2"></i>${x.data().endereco.logradouro} - ${x.data().endereco.bairro}<br>
+            ${x.data().endereco.cidade} - ${x.data().endereco.estado}
+            `
+        })
 
     // Foto
     info.forEach(foto =>{ 
@@ -47,20 +51,20 @@ async function meuCurriculo() {
     let tecno = []
     info.forEach(tecnologia => tecno.push(...tecnologia.data().tecnologias))    
     tecno.forEach(tecnologia => {
-        $tecno.innerHTML += `<li><i class="far fa-file-code mr-2"></i>${tecnologia}</li>` 
+        $tecno.innerHTML += `<li class="list-group-item"><i class="far fa-file-code mr-2"></i>${tecnologia}</li>` 
     })
 
     // Idiomas
     let idiomas = []
     info.forEach(idioma => idiomas.push(...idioma.data().idiomas))    
     idiomas.forEach(idiomas => {
-        $idioma.innerHTML += `<li><i class="fas fa-language mr-2"></i>${idiomas}</li>` 
+        $idioma.innerHTML += `<li class="list-group-item"><i class="fas fa-language mr-2"></i>${idiomas}</li>` 
     })
 
     // Objetivo
     info.forEach(obj => {
         $objetivo.innerHTML += `
-            <p>${obj.data().objetivo.objetivo}</p>
+            <p>${obj.data().objetivo}</p>
         `
     })
 
@@ -82,20 +86,20 @@ async function meuCurriculo() {
     cursos.forEach(curso => {
         $cursos.innerHTML += `
         <li><strong>${curso.curso}</strong></li>
-        <li>${curso.entidadeCurso}</li>
-        <li>${curso.ano}</li>
+        <li>${curso.entidade}</li>
+        <li>${new Date(curso.ano).getFullYear()}</li>
         ` 
     })
     
     //Experiencia
     
     let experiencias = []
-    info.forEach(experiencia => experiencias.push(...experiencia.data().experiencia))    
+    info.forEach(experiencia => experiencias.push(...experiencia.data().experiencias))    
     experiencias.forEach(experiencia => {
         $experiencia.innerHTML += `
         <li><strong>${experiencia.empresa}</strong></li>
         <li>${experiencia.cargo}</li>
-        <li>${new Date(experiencia.ano).getFullYear()}</li>
+        <li>${new Date(experiencia.anoSaida).getFullYear()}</li>
         ` 
     })
 
