@@ -1,5 +1,20 @@
 
+
 async function meuCurriculo() {
+    
+    let db = await firebase.firestore()
+    let dados = await db.collection('curriculos')
+    let info = await dados.get()
+    
+    let curriculos = []
+    info.forEach(x => curriculos.push(x.data()))
+    
+    cv(curriculos)
+    
+}
+
+async function cv(info){
+    const $conteudo = document.getElementById('conteudo')
 
     let $dados = document.getElementById('dados')
     let $contato = document.getElementById('contato')
@@ -11,35 +26,34 @@ async function meuCurriculo() {
     let $experiencia = document.getElementById('experiencia')
     let $foto = document.getElementById('foto')
 
-    let db = await firebase.firestore()
-    let dados = await db.collection('curriculos')
-    let info = await dados.get()
 
-    info.forEach(element => {
-        console.log(element.data())
-    });
-    // Dados Pessoais
-    await info.forEach(x => {
-        $dados.innerHTML += ` 
+       // Dados Pessoais
+       await info.forEach(x => {
+        const $dadosHTML = ` 
             <h2>${x.data().DadosPessoais.nome}</h2>
             <h4>${x.data().DadosPessoais.cargo}</h4>
             <p>${x.data().DadosPessoais.idade} Anos`
+            $conteudo.innerHTML += $dadosHTML
     })
+
     // Dados de Contato
     await info.forEach(x => {
-        $contato.innerHTML += ` 
+        const $contatoHTML = ` 
         <ul >
-            <li><i class="fab fa-whatsapp mr-2"></i> ${x.data().contato.telefone}</li>
-            <li><i class="fas fa-at mr-2"></i> ${x.data().contato.email}</li>
-            <li><i class="fab fa-github mr-2"></i><a href="${x.data().contato.git}"> ${x.data().contato.git}<a/></li>
-            <li><i class="fab fa-linkedin mr-2"></i><a href="${x.data().contato.linkedin}"> ${x.data().contato.linkedin}<a/></li>
-            </ul>
-            <hr>
-            <h2>Endereço</h2>
-            <i class="fas fa-map-marker-alt mr-2"></i>${x.data().endereco.logradouro} - ${x.data().endereco.bairro}<br>
-            ${x.data().endereco.cidade} - ${x.data().endereco.estado}
-            `
-        })
+        <li><i class="fab fa-whatsapp mr-2"></i> ${x.data().contato.telefone}</li>
+        <li><i class="fas fa-at mr-2"></i> ${x.data().contato.email}</li>
+        <li><i class="fab fa-github mr-2"></i><a href="${x.data().contato.git}"> ${x.data().contato.git}<a/></li>
+        <li><i class="fab fa-linkedin mr-2"></i><a href="${x.data().contato.linkedin}"> ${x.data().contato.linkedin}<a/></li>
+        </ul>
+        <hr>
+        <h2>Endereço</h2>
+        <i class="fas fa-map-marker-alt mr-2"></i>${x.data().endereco.logradouro} - ${x.data().endereco.bairro}<br>
+        ${x.data().endereco.cidade} - ${x.data().endereco.estado}
+        `
+        $conteudo.innerHTML += $contatoHTML
+    })
+
+
 
     // Foto
     info.forEach(foto =>{ 
@@ -67,7 +81,7 @@ async function meuCurriculo() {
 
     // Objetivo
     info.forEach(obj => {
-        $objetivo.innerHTML += `
+        $objetivo.innerHTML = `
             <p>${obj.data().objetivo}</p>
         `
     })
@@ -77,7 +91,7 @@ async function meuCurriculo() {
     let forms = [] 
     info.forEach(form => forms.push(...form.data().formacao))
     forms.forEach(f =>{
-        $formacao.innerHTML += `
+        $formacao.innerHTML = `
         <li><strong>${f.formacao}</strong></li>
         <li>${f.entidade}</li>
         <li>${new Date(f.ano).getFullYear()}</li>
@@ -89,7 +103,7 @@ async function meuCurriculo() {
     let cursos = []
     info.forEach(curso => cursos.push(...curso.data().cursos))    
     cursos.forEach(curso => {
-        $cursos.innerHTML += `
+        $cursos.innerHTML = `
         <li><strong>${curso.curso}</strong></li>
         <li>${curso.entidade}</li>
         <li>${new Date(curso.ano).getFullYear()}</li>
@@ -101,11 +115,12 @@ async function meuCurriculo() {
     let experiencias = []
     info.forEach(experiencia => experiencias.push(...experiencia.data().experiencias))    
     experiencias.map(experiencia => {
-        $experiencia.innerHTML += `
+        $experiencia.innerHTML = `
         <li><strong>${experiencia.empresa}</strong></li>
         <li>${experiencia.cargo}</li>
         <li>${new Date(experiencia.anoSaida).getFullYear()}</li>
         ` 
     })
-
+    
+    $conteudo.innerHTML += $experiencia
 }
